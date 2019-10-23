@@ -23,7 +23,6 @@
 |Column|Type|Options|
 |------|----|-------|
 |group_name|text|null: false|
-|group_member|text||
 ### Association
 - has_many :users_groups
 - has_many :users,  through:  :users_groups
