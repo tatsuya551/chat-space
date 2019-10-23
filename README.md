@@ -6,18 +6,28 @@
 |email|string|null: false|
 |password|string|null: false|
 ### Association
-- has_many :chat_groups
-- has_many :chat_comments
+- has_many :users_groups
+- has_many :groups,  through:  :users_groups
+- has_many :comments
 
-## chat_groupsテーブル
+## users_groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|chat_group_name|text|null: false|
-|chat_group_member|text||
 |user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
-- has_many :chat_comments
+- belongs_to :group
+
+## groupsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|group_name|text|null: false|
+|group_member|text||
+### Association
+- has_many :users_groups
+- has_many :users,  through:  :users_groups
+- has_many :comments
 
 ## chat_commentsテーブル
 |Column|Type|Options|
@@ -25,7 +35,7 @@
 |text|text||
 |image|text||
 |user_id|integer|null: false, foreign_key: true|
-|chat_group_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :tweet
-- belongs_to :chat_group
+- belongs_to :user
+- belongs_to :group
