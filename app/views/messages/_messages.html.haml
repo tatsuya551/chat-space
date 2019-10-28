@@ -1,0 +1,59 @@
+.contents
+  .contents__left
+    .contents__left__header
+      .contents__left__header__box
+        .contents__left__header__box__user-name
+          user name
+        .contents__left__header__box__btn
+          =link_to "#", class: "contents__left__header__box--icon" do
+            %i.fa.fa-cog
+            %span<>
+          =link_to "#", class: "contents__left__header__box--icon" do
+            %i.fa.fa-edit
+            %span<>
+    .contents__left__group-list
+      .contents__left__group-list__chat-room
+        .contents__left__group-list__chat-room__group-name
+          group-name
+        .contents__left__group-list__chat-room__message
+          message
+  .contents__right
+    .contents__right__header
+      .contents__right__header__group
+        .contents__right__header__group__name
+          group-name
+        .contents__right__header__group__member
+          .contents__right__header__group__member__logo
+            Member : 
+          .contents__right__header__group__member__name
+            group-member
+      =link_to "#", class: "contents__right__header--btn" do
+        Edit
+    .contents__right__main
+      .contents__right__main__chat-room
+        .contents__right__main__chat-room__messages-up
+          .contents__right__main__chat-room__messages-up__user-name
+            name
+          .contents__right__main__chat-room__messages-up__date
+            date
+        .contents__right__main__chat-room__messages-down 
+          .contents__right__main__chat-room__messages-down__message
+            message
+        .contents__right__main__chat-room__messages-up
+          .contents__right__main__chat-room__messages-up__user-name
+            name
+          .contents__right__main__chat-room__messages-up__date
+            date
+        .contents__right__main__chat-room__messages-down 
+          .contents__right__main__chat-room__messages-down__message
+            message
+    .contents__right__form
+      .contents__right__form__send
+        = form_for messages_url do |f|
+          .contents__right__form__send__box
+            = f.text_field :content, class:"contents__right__form__send__box__type",placeholder: "type a message"
+            %label.contents__right__form__send__box--icon
+              = fa_icon'image'
+              = f.file_field :image, id: "upload-icon"
+        =link_to "#", class: "contents__right__form__send__btn" do
+          Send
