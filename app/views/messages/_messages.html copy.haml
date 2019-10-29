@@ -3,7 +3,7 @@
     .contents__left__header
       .contents__left__header__box
         .contents__left__header__box__user-name
-          = current_user.name
+          user name
         .contents__left__header__box__btn
           =link_to "new_group_path", class: "contents__left__header__box--icon" do
             %i.fa.fa-cog
@@ -14,11 +14,10 @@
     .contents__left__group-list
       - current_user.groups.each do |group|
         .contents__left__group-list__chat-room
-        = link_to group_messages_path(group) do
           .contents__left__group-list__chat-room__group-name
-            = group.name
+            group-name
           .contents__left__group-list__chat-room__message
-            メッセージはまだありません。
+            message
   .contents__right
     .contents__right__header
       .contents__right__header__group
@@ -59,4 +58,3 @@
               = f.file_field :image, id: "upload-icon"
         =link_to "#", class: "contents__right__form__send__btn" do
           Send
-        
