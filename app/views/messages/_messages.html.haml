@@ -3,20 +3,22 @@
     .contents__left__header
       .contents__left__header__box
         .contents__left__header__box__user-name
-          user name
+          = current_user.name
         .contents__left__header__box__btn
-          =link_to "#", class: "contents__left__header__box--icon" do
+          =link_to "new_group_path", class: "contents__left__header__box--icon" do
             %i.fa.fa-cog
             %span<>
-          =link_to "#", class: "contents__left__header__box--icon" do
+          =link_to "edit_user_path(current_user)", class: "contents__left__header__box--icon" do
             %i.fa.fa-edit
             %span<>
     .contents__left__group-list
-      .contents__left__group-list__chat-room
-        .contents__left__group-list__chat-room__group-name
-          group-name
-        .contents__left__group-list__chat-room__message
-          message
+      - current_user.groups.each do |group|
+        .contents__left__group-list__chat-room
+        = link_to group_messages_path(group) do
+          .contents__left__group-list__chat-room__group-name
+            = group.name
+          .contents__left__group-list__chat-room__message
+            メッセージはまだありません。
   .contents__right
     .contents__right__header
       .contents__right__header__group
@@ -49,7 +51,7 @@
             message
     .contents__right__form
       .contents__right__form__send
-        = form_for messages_url do |f|
+        = form_for @message do |f|
           .contents__right__form__send__box
             = f.text_field :content, class:"contents__right__form__send__box__type",placeholder: "type a message"
             %label.contents__right__form__send__box--icon
