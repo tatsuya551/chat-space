@@ -1,22 +1,19 @@
-/ ユーザー編集ページに遷移するためのパスを追加
-.contents
-  .contents__left
-    .contents__left__header
-      .contents__left__header__box
-        .contents__left__header__box__user-name
-          = current_user.name
-        .contents__left__header__box__btn
-          =link_to "new_group_path", class: "contents__left__header__box--icon" do
-            %i.fa.fa-cog
-            %span<>
-          =link_to "edit_user_path(current_user)", class: "contents__left__header__box--icon" do
-            %i.fa.fa-edit
-            %span<>
-    .contents__left__group-list
-      - current_user.groups.each do |group|
-        .contents__left__group-list__chat-room
+.side-bar
+  .header
+    %h3.header__name
+      = current_user.name
+    %ul.header__lists
+      %li.list
+        = link_to new_group_path do
+          = fa_icon 'pencil-square-o', class: 'icon'
+      %li.list
+        = link_to edit_user_path(current_user) do
+          = fa_icon 'cog', class: 'icon'
+  .groups
+    - current_user.groups.each do |group|
+      .group
         = link_to group_messages_path(group) do
-          .contents__left__group-list__chat-room__group-name
+          .group__name
             = group.name
-          .contents__left__group-list__chat-room__message
-            メッセージはまだありません。
+          .group__message
+            = group.show_last_message

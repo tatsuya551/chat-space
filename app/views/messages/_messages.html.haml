@@ -1,62 +1,54 @@
-.contents
-  .contents__left
-    .contents__left__header
-      .contents__left__header__box
-        .contents__left__header__box__user-name
-          = current_user.name
-        .contents__left__header__box__btn
-          =link_to "new_group_path", class: "contents__left__header__box--icon" do
-            %i.fa.fa-cog
-            %span<>
-          =link_to "edit_user_path(current_user)", class: "contents__left__header__box--icon" do
-            %i.fa.fa-edit
-            %span<>
-    .contents__left__group-list
-      - current_user.groups.each do |group|
-        .contents__left__group-list__chat-room
-        = link_to group_messages_path(group) do
-          .contents__left__group-list__chat-room__group-name
-            = group.name
-          .contents__left__group-list__chat-room__message
-            メッセージはまだありません。
-  .contents__right
-    .contents__right__header
-      .contents__right__header__group
-        .contents__right__header__group__name
-          group-name
-        .contents__right__header__group__member
-          .contents__right__header__group__member__logo
-            Member : 
-          .contents__right__header__group__member__name
-            group-member
-      =link_to "#", class: "contents__right__header--btn" do
-        Edit
-    .contents__right__main
-      .contents__right__main__chat-room
-        .contents__right__main__chat-room__messages-up
-          .contents__right__main__chat-room__messages-up__user-name
-            name
-          .contents__right__main__chat-room__messages-up__date
-            date
-        .contents__right__main__chat-room__messages-down 
-          .contents__right__main__chat-room__messages-down__message
-            message
-        .contents__right__main__chat-room__messages-up
-          .contents__right__main__chat-room__messages-up__user-name
-            name
-          .contents__right__main__chat-room__messages-up__date
-            date
-        .contents__right__main__chat-room__messages-down 
-          .contents__right__main__chat-room__messages-down__message
-            message
-    .contents__right__form
-      .contents__right__form__send
-        = form_for @message do |f|
-          .contents__right__form__send__box
-            = f.text_field :content, class:"contents__right__form__send__box__type",placeholder: "type a message"
-            %label.contents__right__form__send__box--icon
-              = fa_icon'image'
-              = f.file_field :image, id: "upload-icon"
-        =link_to "#", class: "contents__right__form__send__btn" do
-          Send
-        
+.wrapper
+
+  = render 'shared/side_bar'
+
+  .chat
+    .header
+      .left-header
+        .left-header__title
+          = @group.name
+        %ul.left-header__members
+          Member：
+          - @user.each do |user|
+            %li.member
+              = user.name
+            
+      .right-header
+        .right-header__button
+          Edit
+    .messages
+      .message
+        .upper-message
+          .upper-message__user-name
+            メンバー
+          .upper-message__date
+            2017/04/04
+        .lower-meesage
+          .lower-message__content
+            メッセージ
+      .message
+        .upper-message
+          .upper-message__user-name
+            メンバー
+          .upper-message__date
+            2017/04/04
+        .lower-meesage
+          .lower-message__content
+            メッセージ
+      .message
+        .upper-message
+          .upper-message__user-name
+            メンバー
+          .upper-message__date
+            2017/04/04
+        .lower-meesage
+          .lower-message__content
+            メッセージ
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
