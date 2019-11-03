@@ -1,9 +1,14 @@
 .chat {
   width: calc(100vw - #{300px});
+  float: left;
   .header {
-    box-sizing: border-box;
     height: 100px;
     padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px #eee;
+    overflow: scroll;
+    box-sizing: border-box;
     .left-header {
       float: left;
       &__title {
@@ -35,9 +40,11 @@
 
   .messages {
     background-color: #FAFAFA;
+    padding: 46px 40px ;
+    height: calc(100vh - #{190px});
+    width: calc(100vw - #{300px});
+    overflow: scroll;
     box-sizing: border-box;
-    padding: 46px 40px 0;
-    height: calc(100% - #{190px});
     .message {
       .upper-message {
         display: flex;
@@ -67,35 +74,46 @@
     background-color: #DDDDDD;
     box-sizing: border-box;
     height: 90px;
-    padding: 20px 50px 20px 40px;
-    &__message {
-      border: none;
-      float: left;
-      height: 50px;
-      width: calc(100% - #{150px});
-    }
-    &__mask {
-      background-color: $white;
-      float: left;
-      height: 50px;
-      padding-right: 10px;
-      &__image {
-        font-size: 20px;
-        line-height: 50px;
+    padding: 20px 40px 20px 40px;
+    width: calc(100vw - #{300px});
+    &__box{
+      display: flex;
+      width: 100%;
+      form{
+        display: flex;
+        width: 100%;
       }
-      .hidden {
-        display: none;
+      &__message {
+        border: none;
+        float: left;
+        height: 50px;
+        width: 100%;
+        padding-left: 10px;
       }
-    }
-    &__submit {
-      background-color: $light_blue;
-      border: none;
-      color: $white;
-      float: right;
-      font-size: 16px;
-      height: 50px;
-      margin-left: 15px;
-      padding: 0 30px;
-    }
+      &__mask {
+        background-color: $white;
+        float: left;
+        height: 50px;
+        padding-right: 10px;
+        &__image {
+          font-size: 20px;
+          line-height: 50px;
+          cursor: pointer;
+        }
+        .hidden {
+          display: none;
+        }
+      }
+      &__submit {
+        background-color: $light_blue;
+        border: none;
+        color: $white;
+        float: right;
+        font-size: 16px;
+        height: 50px;
+        margin-left: 15px;
+        padding: 0 30px;
+      }
+    }  
   }
 }

@@ -19,10 +19,11 @@
       - @messages.each do |message|
         = render partial: "message", locals: { message: message }
     .form
-      = form_for [@group, @message] do |f|
-        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
-        .form__mask
-          = f.label :image, class: 'form__mask__image' do
-            = fa_icon 'picture-o', class: 'icon'
-            = f.file_field :image, class: 'hidden'
-        = f.submit 'Send', class: 'form__submit'
+      .form__box
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'form__box__message', placeholder: 'type a message'
+          .form__box__mask
+            = f.label :image, class: 'form__box__mask__image' do
+              = fa_icon 'picture-o', class: 'icon'
+              = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'form__box__submit'

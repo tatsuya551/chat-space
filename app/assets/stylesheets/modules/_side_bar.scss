@@ -7,6 +7,7 @@
     height: 100px;
     line-height: 100px;
     padding: 0 20px;
+    overflow: hidden;
     &__name {
       display: inline-block;
       font-size: $side_header_font;
@@ -28,10 +29,15 @@
   .groups {
     background-color: $side_blue_light;
     height: calc(100vh - #{100px});
+    width: 300px;
     padding: 0 20px;
+    overflow: scroll;
+    box-sizing: border-box;
+    border: none;
     .group {
       box-sizing: border-box;
       padding: 20px 0 40px;
+      width: 300px;
       &__name {
         color: $white;
         font-size: $side_group_name;
