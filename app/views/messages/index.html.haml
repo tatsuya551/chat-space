@@ -13,8 +13,8 @@
             %li.member
               = user.name       
       .right-header
-        .right-header__button
-          Edit
+        .right-header--button
+          = link_to "Edit", edit_group_path(params[:group_id]), method: :get
     .messages
       - @messages.each do |message|
         = render partial: "message", locals: { message: message }
